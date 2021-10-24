@@ -9,6 +9,7 @@ function init() {
   var voice_select = document.getElementById('voice-select');
   var voice = '';
   var voices = synth.getVoices();
+  var select = '';
 
   // We adjust our code from MDN docs
   // which tell us how to load all the voices and push them to the options
@@ -28,16 +29,26 @@ function init() {
     voice_select.appendChild(option);
   }
 
+  voice_select.addEventListener('change',(event)=>{
+    select = event.target.value;
+    voice = select.substring(0, select.indexOf('(') - 1);
+  });
+
   // speak
   btn.addEventListener('click', (event) => {
     var text = document.querySelector('textarea').value;
     var speech = new SpeechSynthesisUtterance(text);
-    var select = voice-select.selectedOptions[0].getAttribute('data-name');
     for(var i = 0; i < voices.length ; i++) {
-      if(voices[i].name === select) {
+      if(voices[i].name === voice) {
         speech.voice = voices[i];
       }
     }
+
     synth.speak(speech);
-  })
+
+    face.src = "assets/images/smiling-open.png";
+    if (synth.paused == true){
+      face.src = 'assets/images/smiling.png';
+    }
+  });
 }
