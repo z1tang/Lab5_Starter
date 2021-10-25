@@ -47,9 +47,10 @@ function init() {
     synth.speak(speech);
 
     face.src = "assets/images/smiling-open.png";
-    
 
-    
-
+    speech.onend = function(event) {
+      face.src = "assets/images/smiling.png";
+    }
   });
+  
 }
