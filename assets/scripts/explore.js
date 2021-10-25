@@ -47,8 +47,9 @@ function init() {
     synth.speak(speech);
 
     face.src = "assets/images/smiling-open.png";
-    if (synth.paused == true){
-      face.src = 'assets/images/smiling.png';
-    }
+    
+
+    
+
   });
 }
